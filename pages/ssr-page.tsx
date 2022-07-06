@@ -12,8 +12,9 @@ type StaticProps = {
 }
 
 const SsrPage: NextPage<StaticProps> = ({ tasks, notices }) => {
+  const router = useRouter()
   return (
-    <Layout title="SSG Page">
+    <Layout title="SSR Page">
       <p className="mb-3 text-blue-500"></p>
       <ul>
         {tasks.map((task) => {
@@ -25,6 +26,15 @@ const SsrPage: NextPage<StaticProps> = ({ tasks, notices }) => {
           return <li key={notice.id}>{notice.content}</li>
         })}
       </ul>
+      <Link href="/ssg-page" prefetch={false}>
+        <a>ssg</a>
+      </Link>
+      <Link href="/isr-page" prefetch={false}>
+        <a>isr</a>
+      </Link>
+
+      <button onClick={() => router.push('/ssg-page')}>router-ssg</button>
+      <button onClick={() => router.push('/isr-page')}>router-isr</button>
     </Layout>
   )
 }
