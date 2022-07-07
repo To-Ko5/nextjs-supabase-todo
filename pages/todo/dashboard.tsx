@@ -18,6 +18,7 @@ const Dashboard: NextPage = () => {
 
   return (
     <Layout title="dashboard">
+      <LogoutIcon className="mb-6 h-6 w-6 cursor-pointer" onClick={signOut} />
       <div className="grid grid-cols-2 gap-40">
         <div>
           <div className="my-3 flex justify-center">
