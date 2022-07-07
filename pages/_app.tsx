@@ -29,8 +29,45 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
   }
 }
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false
+    }
+  }
+})
+
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const { push, pathname } = useRouter()
+  const validateSession = async () => {
+    const user = supabase.auth.user()
+    if (user && pathname === '/') {
+      push('todo/dashboard')
+    } else {
+      await push('/')
+    }
+  }
+
+  // supabaseのログイン処理を検知する
+  supabase.auth.onAuthStateChange((event, _) => {
+    if (event === 'SIGNED_IN' && pathname === '/') {
+      push('/todo/dashboard')
+    }
+    if (event === 'SIGNED_OUT') {
+      push('/')
+    }
+  })
+  useEffect(() => {
+    validateSession()
+  }, [])
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Component {...pageProps} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  )
 }
 
 export default MyApp
