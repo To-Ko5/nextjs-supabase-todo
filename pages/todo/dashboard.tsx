@@ -5,8 +5,8 @@ import { GetStaticProps } from 'next'
 import { Layout } from '../../components/Layout'
 import { TaskList } from '../../components/TaskList'
 import { TaskForm } from '../../components/TaskForm'
-// import { NoticeForm } from '../../components/NoticeForm'
-// import { NoticeList } from '../../components/NoticeList'
+import { NoticeForm } from '../../components/NoticeForm'
+import { NoticeList } from '../../components/NoticeList'
 import { supabase } from '../../utils/supabase'
 import { Task, Notice } from '../../types/types'
 import {
@@ -35,6 +35,8 @@ const Dashboard: NextPage = () => {
           <div className="my-3 flex justify-center ">
             <StatusOnlineIcon className=" h-4 w-4 " />
           </div>
+          <NoticeForm />
+          <NoticeList />
         </div>
       </div>
     </Layout>
