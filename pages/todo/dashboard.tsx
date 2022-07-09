@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useQueryClient } from 'react-query'
 import { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import { Layout } from '../../components/Layout'
@@ -16,8 +17,11 @@ import {
 } from '@heroicons/react/solid'
 
 const Dashboard: NextPage = () => {
+  const queryClient = useQueryClient()
   const signOut = () => {
     supabase.auth.signOut()
+    queryClient.removeQueries('todos')
+    queryClient.removeQueries('notices')
   }
 
   return (
