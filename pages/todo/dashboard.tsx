@@ -1,15 +1,11 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useQueryClient } from 'react-query'
 import { NextPage } from 'next'
-import { GetStaticProps } from 'next'
 import { Layout } from '../../components/Layout'
 import { TaskList } from '../../components/TaskList'
 import { TaskForm } from '../../components/TaskForm'
 import { NoticeForm } from '../../components/NoticeForm'
 import { NoticeList } from '../../components/NoticeList'
 import { supabase } from '../../utils/supabase'
-import { Task, Notice } from '../../types/types'
 import {
   LogoutIcon,
   StatusOnlineIcon,
