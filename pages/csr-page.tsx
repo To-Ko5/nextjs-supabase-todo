@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import { Layout } from '../components/Layout'
 import { supabase } from '../utils/supabase'
